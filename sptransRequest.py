@@ -24,7 +24,7 @@ class sptransRequest(object):
 
         return response
 
-    def coordsLine(codigoLinha):
+    def coordsLine(self, codigoLinha):
 
         try:
             response = self.getLocationLine(codigoLinha)
