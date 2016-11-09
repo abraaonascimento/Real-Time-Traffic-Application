@@ -1,4 +1,9 @@
+# coding: utf-8
+
+# In[ ]:
+
 import requests
+import json
 
 class sptransRequest(object):
     
@@ -7,10 +12,26 @@ class sptransRequest(object):
         url = 'http://api.olhovivo.sptrans.com.br/v0/Login/Autenticar?token='
         key = 'your key'
     
-        r = requests.post(url + key)
+        response = requests.post(url + key)
     
-        return r
+        return response
 
-    def get(self):
-    
-        return 'something'
+    def getLocationLine(self, codigoLinha):
+        
+        url = 'http://api.olhovivo.sptrans.com.br/v0/Posicao?' + str(codigoLinha)
+        
+        response = requests.get(url, {"codigoLinha":str(codigoLinha)}
+
+        return response
+
+    def coordsLine(codigoLinha):
+
+        try:
+            response = self.getLocationLine(codigoLinha)
+            data = response.txt
+            js = json.loads(str(data))
+
+            return js
+            
+        except Exception as error:
+            print (error)
