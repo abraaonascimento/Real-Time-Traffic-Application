@@ -6,32 +6,34 @@ import requests
 import json
 
 class sptransRequest(object):
-    
+
     def post(self):
-    
+
         url = 'http://api.olhovivo.sptrans.com.br/v0/Login/Autenticar?token='
         key = 'your key'
-    
-        response = requests.post(url + key)
-    
-        return response
 
-    def getLocationLine(self, codigoLinha):
+        self.session = requests.Session()
         
-        url = 'http://api.olhovivo.sptrans.com.br/v0/Posicao?' + str(codigoLinha)
-        
-        response = requests.get(url, {"codigoLinha":str(codigoLinha)}
+        response = self.session.post(url + key)
 
         return response
 
-    def coordsLine(self, codigoLinha):
+    def getLocationBus(self, busID):
+
+        url = 'http://api.olhovivo.sptrans.com.br/v0/Posicao?codigoLinha=' + str(busID)
+
+        response = self.session.get(url)
+
+        return response
+
+    def coordsBus(self, busID):
 
         try:
-            response = self.getLocationLine(codigoLinha)
-            data = response.txt
+            response = self.getLocationBus(busID)
+            data = response.text
             js = json.loads(str(data))
 
             return js
-            
+
         except Exception as error:
             print (error)
