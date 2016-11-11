@@ -6,18 +6,18 @@ import sqlite3
 
 class database(object):
 
-    def createDatabase(self, name):
+    def createDatabase(self, name='busLocationDatabase'):
 
         self.databaseName = name
 
-        conn = sqlite3.connect(name + '.sqlite')
-        cur = conn.cursor()
+        self.conn = sqlite3.connect(name + '.sqlite')
+        self.cur = self.conn.cursor()
 
-        cur.execute('''CREATE TABLE IF NOT EXISTS Locations (MotorBus_ID TEXT, locatiton_X TEXT, locatiton_Y TEXT)''')
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS Locations (Bus_ID TEXT, location_X TEXT, location_Y TEXT)''')
 
-        return print ('You just created a database named: ' + name)
+        return print ('You just created a database named: ' + self.databaseName + '.sqlite')
 
-    def saveBusLocation(js):
+    def saveBusLocation(self, js):
 
         busLocation = js['vs']
 
@@ -25,12 +25,12 @@ class database(object):
 
             busID = (bus['p'])
 
-            locatitonX = (bus['px'])
-            locatitonY = (bus['py'])
+            locationX = (bus['px'])
+            locationY = (bus['py'])
 
-            cur.execute('''INSERT INTO Locations (MotorBus_ID,  locatiton_X, locatiton_Y)
-            VALUES ( ?, ?, ? )''', (busID, locatitonX, locatitonY) )
+            self.cur.execute('''INSERT INTO Locations (Bus_ID,  location_X, location_Y)
+            VALUES ( ?, ?, ? )''', (busID, locationX, locationY) )
 
-            conn.commit()
+            self.conn.commit()
 
-        return print ('You just saved {0} in {0} database'.format(str(len(busLocation)), self.databaseName)
+        return print ('You just saved {0} in {0} database'.format(str(len(busLocation)), self.databaseName))
