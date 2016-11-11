@@ -9,7 +9,7 @@ can for my own build something that show how the traffic works.
 Maybe it can be helpul for someone too. 
 
 It image below is a little simple sample about what I will built first
-![](https://uploaddeimagens.com.br/images/000/773/834/original/real_time_traffic_application.jpg?1478904728)
+![](https://uploaddeimagens.com.br/images/000/773/852/original/real_time_traffic_application1.png?1478905955)
 
 
 
