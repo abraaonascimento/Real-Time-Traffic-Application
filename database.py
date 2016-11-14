@@ -46,7 +46,7 @@ class database(object):
         
         for line in self.cur:
 
-            (busID, longitude, latitude) = (str(line[0]), str(line[1]), str(line[2]))
+            (busID, longitude, latitude) = (line[0], float(line[1]), float(line[2]))
 
             bus = {'id': busID,
             'longitude': longitude,
