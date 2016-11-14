@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Real Time Traffic Map</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+	<script src="busData.js"></script>
+    <script>
+
+function initMap() {
+  var myLatLng = {lat: -23.552559, lng: -46.628308};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: myLatLng
+  });
+
+for (var i = 0; i < data.length; i++) {
+
+    var bus = data[i];
+    var latlng = {
+        lat: bus.latitude,
+        lng: bus.longitude
+    };
+    var contentString = bus.id;
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: ''
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+        return function() {
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        };
+    })(marker, contentString, infowindow));
+
+}
+}
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=YOUR KEY"></script>
+  </body>
+</html>
