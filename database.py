@@ -34,3 +34,29 @@ class database(object):
             self.conn.commit()
 
         return print ('You just saved {0} in {0} database'.format(str(len(busLocation)), self.databaseName))
+    
+    def exportDataToJavaScript(self):
+
+        self.cur.execute('SELECT * FROM Locations')
+
+        datajs = open('busData.js','w', "utf-8")
+        datajs.write("data = ")
+
+        data = []
+        
+        for line in self.cur:
+
+            (busID, latitude, longitude) = (str(line[0]), str(line[1]), str(line[2]))
+
+            bus = {'id': busID,
+            'latitude': latitude,
+            'longitude': longitude}
+
+            data.append(bus)
+
+        datajs.write(str(data))
+
+        self.cur.close()
+        datajs.close()
+
+        return print ('You just exported all data in {0} database'.format(self.databaseName))
