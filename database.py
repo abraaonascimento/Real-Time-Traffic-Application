@@ -39,18 +39,19 @@ class database(object):
 
         self.cur.execute('SELECT * FROM Locations')
 
-        datajs = open('busData.js','w', "utf-8")
+        datajs = open('busData.js','w')
         datajs.write("data = ")
 
         data = []
         
         for line in self.cur:
 
-            (busID, latitude, longitude) = (str(line[0]), str(line[1]), str(line[2]))
+            (busID, longitude, latitude) = (str(line[0]), str(line[1]), str(line[2]))
 
             bus = {'id': busID,
-            'latitude': latitude,
-            'longitude': longitude}
+            'longitude': longitude,
+            'latitude': latitude
+            }
 
             data.append(bus)
 
