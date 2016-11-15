@@ -2,6 +2,7 @@
 
 # In[ ]:
 
+
 import requests
 import json
 
@@ -9,15 +10,15 @@ class requestRealTimeBusLocation(object):
 
     sptransLines = [1273, 34041]
 
-    def __init__(self, getRealTimeLocation=True):
+    def __init__(self, realTimeLocation=True):
 
         self.post()
-        self.getRealTimeLocation = getRealTimeLocation
+        self.realTimeLocation = realTimeLocation
 
     def post(self):
 
         url = 'http://api.olhovivo.sptrans.com.br/v0/Login/Autenticar?token='
-        key = 'YOUR KEY'
+        key = 'f0d9fb70c47933ef03dc4f93631ca77bf152eae4d3669b091634469e0ed7db6b'
 
         self.session = requests.Session()
 
@@ -47,7 +48,7 @@ class requestRealTimeBusLocation(object):
 
     def getNetworkBusLocation(self, sptransLines=sptransLines):
 
-        if self.getRealTimeLocation == True:
+        if self.realTimeLocation == True:
 
             networkBusLocation = []
 
@@ -57,3 +58,27 @@ class requestRealTimeBusLocation(object):
                 networkBusLocation.append(busLocation)
 
         return networkBusLocation
+
+import time
+
+class realTimeBusLocation(requestRealTimeBusLocation):
+
+    # It is just a test
+    def __init__(self):
+        self.post()
+
+    def getBusLocationPerMinute(self):
+
+        self.locationPerMinute = True
+        self.time = time.strat()
+        
+        def networkBusLocation(self):
+            return self.getNetworkBusLocation()
+
+        while self.locationPerMinute:
+
+            if self.time <= 5:
+
+                return networkBusLocation
+
+                time.sleep(60)
