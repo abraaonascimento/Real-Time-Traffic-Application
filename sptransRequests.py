@@ -18,7 +18,7 @@ class requestRealTimeBusLocation(object):
     def post(self):
 
         url = 'http://api.olhovivo.sptrans.com.br/v0/Login/Autenticar?token='
-        key = 'f0d9fb70c47933ef03dc4f93631ca77bf152eae4d3669b091634469e0ed7db6b'
+        key = 'your key'
 
         self.session = requests.Session()
 
