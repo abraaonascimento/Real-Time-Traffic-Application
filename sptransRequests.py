@@ -1,10 +1,10 @@
 # coding: utf-8
 
 # In[ ]:
+import time
 
-
-import requests
 import json
+import requests
 
 class requestRealTimeBusLocation(object):
 
@@ -58,8 +58,7 @@ class requestRealTimeBusLocation(object):
                 networkBusLocation.append(busLocation)
 
         return networkBusLocation
-
-import time
+    
 
 class realTimeBusLocation(requestRealTimeBusLocation):
 
