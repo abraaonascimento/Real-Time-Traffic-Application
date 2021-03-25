@@ -1,6 +1,6 @@
 # Real-Time-Traffic-Application
 
-## Hold on
+## Depreciated
 
 Web simple traffic application to track public transport in São Paulo city.
 
